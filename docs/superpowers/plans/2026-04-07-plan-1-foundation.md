@@ -29,8 +29,7 @@ turbodoedel/
 ├── supabase/
 │   └── migrations/
 │       └── 001_create_umbauten.sql # Initiales DB-Schema
-├── tailwind.config.ts              # Custom colors, fonts, animations
-├── middleware.ts                    # Auth-Guard für /admin (wird in Plan 3 erweitert)
+├── proxy.ts                         # Auth-Guard für /admin (wird in Plan 3 erweitert)
 ├── .env.local                      # NEXT_PUBLIC_SUPABASE_URL + ANON_KEY (nicht committen!)
 └── __tests__/
     └── lib/
@@ -122,137 +121,123 @@ git commit -m "feat: scaffold Next.js project with Supabase and Jest"
 
 ---
 
-## Task 2: Tailwind Design-System konfigurieren
+## Task 2: Tailwind Design-System konfigurieren (v4 CSS-first)
 
 **Files:**
-- Modify: `tailwind.config.ts`
 - Modify: `app/globals.css`
 
-- [ ] **Step 1: tailwind.config.ts ersetzen**
+> **Tailwind v4 Hinweis:** Kein `tailwind.config.ts` nötig. Konfiguration erfolgt CSS-first via `@theme {}` in `globals.css`. Custom colors als `--color-*` Variablen werden von v4 automatisch als Utility-Klassen generiert (z.B. `bg-bg-base`, `text-amber`, `border-bg-border`).
 
-```typescript
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      colors: {
-        // Backgrounds
-        bg: {
-          base:    '#0a0a0a',
-          surface: '#111111',
-          raised:  '#1a1a1a',
-          border:  '#2a2a2a',
-        },
-        // Akzent: Gold/Amber
-        amber: {
-          DEFAULT: '#c8902a',
-          light:   '#e0a83a',
-          dark:    '#a07020',
-        },
-        // Text
-        text: {
-          primary:   '#ffffff',
-          secondary: '#dddddd',
-          muted:     '#aaaaaa',
-          faint:     '#666666',
-        },
-        // Supabase-Grün (nur Admin-UI)
-        supa: '#3ecf8e',
-      },
-      fontFamily: {
-        sans:  ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        mono:  ['var(--font-jetbrains)', 'monospace'],
-      },
-      animation: {
-        ticker: 'ticker 30s linear infinite',
-        'fade-up': 'fadeUp 0.6s ease forwards',
-      },
-      keyframes: {
-        ticker: {
-          '0%':   { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-        fadeUp: {
-          '0%':   { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
-    },
-  },
-  plugins: [],
-}
-
-export default config
-```
-
-- [ ] **Step 2: globals.css ersetzen**
+- [ ] **Step 1: globals.css ersetzen**
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Backgrounds */
+  --color-bg-base: #0a0a0a;
+  --color-bg-surface: #111111;
+  --color-bg-raised: #1a1a1a;
+  --color-bg-border: #2a2a2a;
+
+  /* Akzent: Gold/Amber */
+  --color-amber: #c8902a;
+  --color-amber-light: #e0a83a;
+  --color-amber-dark: #a07020;
+
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #dddddd;
+  --color-text-muted: #aaaaaa;
+  --color-text-faint: #666666;
+
+  /* Supabase-Grün (nur Admin-UI) */
+  --color-supa: #3ecf8e;
+
+  /* Fonts */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
+  /* Animations */
+  --animate-ticker: ticker 30s linear infinite;
+  --animate-fade-up: fadeUp 0.6s ease forwards;
+
+  /* Keyframes */
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes fadeUp {
+    0%   { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
 
 @layer base {
-  :root {
-    color-scheme: dark;
-  }
-
-  html {
-    @apply bg-bg-base text-text-primary;
-    scroll-behavior: smooth;
-  }
-
-  /* Scrollbar */
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { @apply bg-bg-surface; }
-  ::-webkit-scrollbar-thumb { @apply bg-bg-border rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-amber; }
+  ::-webkit-scrollbar-track { background: var(--color-bg-surface); }
+  ::-webkit-scrollbar-thumb { background: var(--color-bg-border); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-amber); }
 }
 
 @layer components {
-  /* Label-Stil: uppercase, letter-spacing */
   .label {
-    @apply text-[10px] font-semibold tracking-[0.2em] uppercase text-text-muted;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
   }
-
-  /* Amber-Trennlinie */
-  .divider-amber {
-    @apply border-t-2 border-amber;
-  }
-
-  /* Card-Basis */
   .card-base {
-    @apply bg-bg-surface border border-bg-border transition-all duration-200
-           hover:-translate-y-1 hover:border-amber cursor-pointer;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-bg-border);
+    transition: all 0.2s;
+    cursor: pointer;
   }
-
-  /* Formularfeld */
+  .card-base:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-amber);
+  }
   .field {
-    @apply bg-bg-surface border border-bg-border px-3 py-2 text-text-primary
-           text-sm w-full focus:outline-none focus:border-amber transition-colors;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-bg-border);
+    padding: 0.5rem 0.75rem;
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.15s;
   }
-
-  /* Primär-Button */
+  .field:focus { border-color: var(--color-amber); }
   .btn-primary {
-    @apply bg-amber text-black font-bold text-xs tracking-widest px-4 py-2
-           transition-colors hover:bg-amber-light active:bg-amber-dark;
+    background: var(--color-amber);
+    color: black;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.15s;
   }
-
-  /* Sekundär-Button */
+  .btn-primary:hover { background: var(--color-amber-light); }
+  .btn-primary:active { background: var(--color-amber-dark); }
   .btn-secondary {
-    @apply bg-bg-raised border border-bg-border text-text-muted text-xs px-4 py-2
-           transition-colors hover:border-amber hover:text-text-primary;
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-bg-border);
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.15s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-amber);
+    color: var(--color-text-primary);
   }
 }
 ```
 
-- [ ] **Step 3: Dev-Server prüfen — keine CSS-Fehler**
+- [ ] **Step 2: Dev-Server prüfen — keine CSS-Fehler**
 
 ```bash
 npm run dev
@@ -260,11 +245,11 @@ npm run dev
 
 Erwartung: Seite im Browser lädt, schwarzer Hintergrund sichtbar (Design-System aktiv).
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 3: Commit**
 
 ```bash
-git add tailwind.config.ts app/globals.css
-git commit -m "feat: add dark+industrial design system tokens"
+git add app/globals.css
+git commit -m "feat: add dark+industrial design system tokens (Tailwind v4 CSS-first)"
 ```
 
 ---
@@ -313,8 +298,8 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from './types'
 
-export function createClient() {
-  const cookieStore = cookies()
+export async function createClient() {
+  const cookieStore = await cookies()
 
   return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -828,19 +813,19 @@ git commit -m "feat: add Nav, Footer and root layout"
 
 ---
 
-## Task 6: Auth-Middleware (Basis)
+## Task 6: Auth-Proxy (Basis)
 
 **Files:**
-- Create: `middleware.ts`
+- Create: `proxy.ts`
 
-- [ ] **Step 1: Middleware erstellen**
+- [ ] **Step 1: Proxy erstellen**
 
 ```typescript
-// middleware.ts
+// proxy.ts
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
@@ -896,8 +881,8 @@ Erwartung: Build erfolgreich, keine TypeScript-Fehler.
 - [ ] **Step 3: Commit**
 
 ```bash
-git add middleware.ts
-git commit -m "feat: add auth middleware for /admin routes"
+git add proxy.ts
+git commit -m "feat: add auth proxy for /admin routes"
 ```
 
 ---
@@ -916,7 +901,7 @@ Erwartung: Build grün, alle Tests PASS.
 
 ```bash
 git add -A
-git commit -m "chore: plan 1 complete — foundation, design system, Supabase, Nav/Footer, middleware"
+git commit -m "chore: plan 1 complete — foundation, design system, Supabase, Nav/Footer, proxy"
 ```
 
 **Plan 1 abgeschlossen.** Weiter mit Plan 2: Öffentliches Frontend.
