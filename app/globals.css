@@ -62,6 +62,16 @@
     --color-amber-dark:  #7f1d1d;
   }
 
+  /* Weißer Text auf Rot-Hintergrund (btn-primary + bg-amber Klassen) */
+  html.light .btn-primary,
+  html.light .btn-primary:hover,
+  html.light .btn-primary:active { color: #ffffff; }
+
+  html.light .bg-amber { color: #ffffff; }
+
+  /* hover:bg-amber → ebenfalls weißer Text beim Hovern */
+  html.light [class*="hover:bg-amber"]:hover { color: #ffffff; }
+
   /* Sanfter Übergang beim Umschalten */
   body {
     transition: background-color 0.2s ease, color 0.2s ease;
