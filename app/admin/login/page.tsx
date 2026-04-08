@@ -25,7 +25,7 @@ export default function AdminLoginPage() {
     })
 
     if (error) {
-      setFehler('Ungültige E-Mail oder falsches Passwort.')
+      setFehler(error.message)
       setLaden(false)
       return
     }
