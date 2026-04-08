@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
   { href: '/umbauten',   label: 'UMBAUTEN'   },
@@ -44,6 +45,9 @@ export default function Nav() {
           >
             KONTAKT
           </Link>
+
+          {/* Dark/Light Toggle */}
+          <ThemeToggle />
         </nav>
       </div>
     </header>
