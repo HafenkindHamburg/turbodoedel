@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
+  { href: '/',           label: 'HOME'        },
   { href: '/umbauten',   label: 'UMBAUTEN'   },
   { href: '/leistungen', label: 'LEISTUNGEN' },
   { href: '/ueber-uns',  label: 'ÜBER UNS'   },
@@ -46,7 +47,8 @@ export default function Nav() {
               key={href}
               href={href}
               className={`label transition-colors hover:text-amber ${
-                pathname.startsWith(href) ? 'text-amber' : 'text-text-faint'
+                (href === '/' ? pathname === '/' : pathname.startsWith(href))
+                  ? 'text-amber' : 'text-text-faint'
               }`}
             >
               {label}
