@@ -26,7 +26,10 @@ export type Database = {
         Row: Umbau
         Insert: UmbauInsert
         Update: UmbauUpdate
+        Relationships: []
       }
     }
+    Views: Record<string, never>
+    Functions: Record<string, never>
   }
 }
