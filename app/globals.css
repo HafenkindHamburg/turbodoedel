@@ -56,10 +56,10 @@
     --color-bg-surface:  #ffffff;
     --color-bg-raised:   #ece8e2;
     --color-bg-border:   #d4cfc8;
-    --color-text-primary:   #1a1a1a;
-    --color-text-secondary: #2d2d2d;
-    --color-text-muted:     #4a4a4a;
-    --color-text-faint:     #888888;
+    --color-text-primary:   #111111;
+    --color-text-secondary: #222222;
+    --color-text-muted:     #333333;
+    --color-text-faint:     #555555;
 
     /* Akzent: Dunkelrot statt Amber */
     --color-amber:       #9b1c1c;

@@ -47,7 +47,8 @@ export default function ParallaxHero() {
 
       {/* Inhalt */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
-        <p className="label text-amber mb-6">// WENN&apos;S UM LEISTUNG GEHT</p>
+        {/* Immer auf dunklem Hintergrund → Original-Amber erzwingen */}
+        <p className="label mb-6" style={{ color: '#c8902a' }}>// WENN&apos;S UM LEISTUNG GEHT</p>
 
         <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tight mb-6 text-white">
           MEHR LEISTUNG.
