@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -7,11 +8,16 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start justify-between gap-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center">
-              <span className="font-bold tracking-widest text-text-primary">TURBO</span>
-              <span className="font-bold tracking-widest text-amber">DÖEDEL</span>
+            <div className="bg-[#111] rounded px-2 py-1 inline-block">
+              <Image
+                src="/images/logo-lg.png"
+                alt="Turbodoedel — Chiptuning & Performance"
+                width={267}
+                height={120}
+                className="h-14 w-auto"
+              />
             </div>
-            <p className="text-text-faint text-xs mt-2">Wenn&apos;s um Leistung geht.</p>
+            <p className="text-text-faint text-xs mt-3">Wenn&apos;s um Leistung geht.</p>
           </div>
 
           {/* Links */}

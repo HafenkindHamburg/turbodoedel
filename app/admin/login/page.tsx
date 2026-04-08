@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 
 export default function AdminLoginPage() {
@@ -37,11 +38,16 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-bg-base flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
         <div className="text-center mb-10">
-          <p className="font-bold text-lg tracking-widest">
-            <span className="text-text-primary">TURBO</span>
-            <span className="text-amber">DÖEDEL</span>
-          </p>
-          <p className="label text-text-faint mt-1">Admin-Bereich</p>
+          <div className="bg-[#111] rounded px-3 py-2 inline-block mb-3">
+            <Image
+              src="/images/logo-lg.png"
+              alt="Turbodoedel"
+              width={267}
+              height={120}
+              className="h-16 w-auto"
+            />
+          </div>
+          <p className="label text-text-faint">Admin-Bereich</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
