@@ -41,12 +41,17 @@
 }
 
 @layer base {
-  :root { color-scheme: dark; }
+  :root {
+    color-scheme: dark;
+    /* Text-Farbe auf Amber-Hintergrund (Dark: schwarze Schrift auf Gold) */
+    --color-on-amber: #000000;
+  }
+
   html { scroll-behavior: smooth; }
-  html.light { color-scheme: light; }
 
   /* Light-Mode: alle Design-Tokens überschreiben */
   html.light {
+    color-scheme: light;
     --color-bg-base:     #f5f2ee;
     --color-bg-surface:  #ffffff;
     --color-bg-raised:   #ece8e2;
@@ -60,22 +65,13 @@
     --color-amber:       #9b1c1c;
     --color-amber-light: #b91c1c;
     --color-amber-dark:  #7f1d1d;
+
+    /* Text auf Amber-Hintergrund → im Light-Mode weiß (Rot ist zu dunkel für schwarz) */
+    --color-on-amber: #ffffff;
   }
-
-  /* Weißer Text auf Rot-Hintergrund (btn-primary + bg-amber Klassen) */
-  html.light .btn-primary,
-  html.light .btn-primary:hover,
-  html.light .btn-primary:active { color: #ffffff; }
-
-  html.light .bg-amber { color: #ffffff; }
-
-  /* hover:bg-amber → ebenfalls weißer Text beim Hovern */
-  html.light [class*="hover:bg-amber"]:hover { color: #ffffff; }
 
   /* Sanfter Übergang beim Umschalten */
-  body {
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
+  body { transition: background-color 0.2s ease, color 0.2s ease; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--color-bg-surface); }
@@ -114,7 +110,8 @@
   .field:focus { border-color: var(--color-amber); }
   .btn-primary {
     background: var(--color-amber);
-    color: black;
+    /* Nutzt CSS-Variable → automatisch schwarz (Dark) oder weiß (Light) */
+    color: var(--color-on-amber);
     font-weight: 700;
     font-size: 0.75rem;
     letter-spacing: 0.1em;
@@ -135,4 +132,14 @@
     border-color: var(--color-amber);
     color: var(--color-text-primary);
   }
+}
+
+/*
+  Außerhalb jedes @layer — überschreibt alle Tailwind-Utilities
+  (Layer-Reihenfolge: base < components < utilities < kein Layer)
+  Amber-Hintergrund → Text-Farbe aus CSS-Variable
+*/
+.bg-amber,
+[class*="hover:bg-amber"]:hover {
+  color: var(--color-on-amber) !important;
 }
