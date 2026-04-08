@@ -38,15 +38,15 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-bg-base flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
         <div className="text-center mb-10">
-          <div className="bg-[#111] rounded px-3 py-2 inline-block mb-3">
-            <Image
-              src="/images/logo-lg.png"
-              alt="Turbodoedel"
-              width={267}
-              height={120}
-              className="h-16 w-auto"
-            />
-          </div>
+          {/* Login ist immer dark-bg → nur Dark-Logo nötig */}
+          <Image
+            src="/images/Turbodoedel_Logo_Dark.png"
+            alt="Turbodoedel"
+            width={340}
+            height={94}
+            className="h-20 w-auto mx-auto mb-3"
+            priority
+          />
           <p className="label text-text-faint">Admin-Bereich</p>
         </div>
 

@@ -19,17 +19,24 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 bg-bg-base/95 backdrop-blur-sm border-b border-bg-border">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo — Dark/Light Version */}
         <Link href="/" className="flex items-center">
-          <div className="bg-[#111] rounded px-1 py-0.5">
-            <Image
-              src="/images/logo-sm.png"
-              alt="Turbodoedel — Chiptuning & Performance"
-              width={89}
-              height={40}
-              priority
-            />
-          </div>
+          <Image
+            src="/images/Turbodoedel_Logo_Dark.png"
+            alt="Turbodoedel — Chiptuning & Performance"
+            width={220}
+            height={61}
+            priority
+            className="logo-dark h-11 w-auto"
+          />
+          <Image
+            src="/images/Turbodoedel_Logo_Light.png"
+            alt="Turbodoedel — Chiptuning & Performance"
+            width={220}
+            height={61}
+            priority
+            className="logo-light h-11 w-auto"
+          />
         </Link>
 
         {/* Navigation Links */}

@@ -8,15 +8,20 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start justify-between gap-8">
           {/* Brand */}
           <div>
-            <div className="bg-[#111] rounded px-2 py-1 inline-block">
-              <Image
-                src="/images/logo-lg.png"
-                alt="Turbodoedel — Chiptuning & Performance"
-                width={267}
-                height={120}
-                className="h-14 w-auto"
-              />
-            </div>
+            <Image
+              src="/images/Turbodoedel_Logo_Dark.png"
+              alt="Turbodoedel — Chiptuning & Performance"
+              width={300}
+              height={83}
+              className="logo-dark h-16 w-auto"
+            />
+            <Image
+              src="/images/Turbodoedel_Logo_Light.png"
+              alt="Turbodoedel — Chiptuning & Performance"
+              width={300}
+              height={83}
+              className="logo-light h-16 w-auto"
+            />
             <p className="text-text-faint text-xs mt-3">Wenn&apos;s um Leistung geht.</p>
           </div>
 

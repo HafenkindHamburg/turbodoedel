@@ -24,15 +24,20 @@ export default function AdminNav() {
     <header className="sticky top-0 z-50 bg-bg-surface border-b border-bg-border">
       <div className="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <div className="bg-[#111] rounded px-1 py-0.5">
-            <Image
-              src="/images/logo-sm.png"
-              alt="Turbodoedel"
-              width={89}
-              height={40}
-              className="h-7 w-auto"
-            />
-          </div>
+          <Image
+            src="/images/Turbodoedel_Logo_Dark.png"
+            alt="Turbodoedel"
+            width={180}
+            height={50}
+            className="logo-dark h-9 w-auto"
+          />
+          <Image
+            src="/images/Turbodoedel_Logo_Light.png"
+            alt="Turbodoedel"
+            width={180}
+            height={50}
+            className="logo-light h-9 w-auto"
+          />
           <span className="label text-amber">ADMIN</span>
           {links.map(({ href, label }) => (
             <Link

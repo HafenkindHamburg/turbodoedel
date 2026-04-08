@@ -135,6 +135,16 @@
 }
 
 /*
+  Theme-aware Logos:
+  .logo-dark  → sichtbar im Dark Mode, versteckt im Light Mode
+  .logo-light → versteckt im Dark Mode, sichtbar im Light Mode
+*/
+.logo-light { display: none; }
+.logo-dark  { display: block; }
+html.light .logo-light { display: block; }
+html.light .logo-dark  { display: none; }
+
+/*
   Außerhalb jedes @layer — überschreibt alle Tailwind-Utilities
   (Layer-Reihenfolge: base < components < utilities < kein Layer)
   Amber-Hintergrund → Text-Farbe aus CSS-Variable
