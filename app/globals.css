@@ -45,6 +45,8 @@
     color-scheme: dark;
     /* Text-Farbe auf Amber-Hintergrund (Dark: schwarze Schrift auf Gold) */
     --color-on-amber: #000000;
+    /* Akzent für immer-dunkle Flächen (Hero) → Gold im Dark-Mode */
+    --color-hero-accent: #c8902a;
   }
 
   html { scroll-behavior: smooth; }
@@ -68,6 +70,9 @@
 
     /* Text auf Amber-Hintergrund → im Light-Mode weiß (Rot ist zu dunkel für schwarz) */
     --color-on-amber: #ffffff;
+
+    /* Akzent-Farbe für immer-dunkle Hintergründe (Hero) → helles Rot statt Gold */
+    --color-hero-accent: #e53535;
   }
 
   /* Sanfter Übergang beim Umschalten */
