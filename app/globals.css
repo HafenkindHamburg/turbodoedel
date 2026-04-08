@@ -145,6 +145,18 @@ html.light .logo-light { display: block; }
 html.light .logo-dark  { display: none; }
 
 /*
+  Nav-Hintergrund: schwarz im Dark Mode, weiß im Light Mode
+*/
+.nav-bg {
+  background-color: rgba(0, 0, 0, 0.97);
+  backdrop-filter: blur(8px);
+}
+html.light .nav-bg {
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+}
+
+/*
   Außerhalb jedes @layer — überschreibt alle Tailwind-Utilities
   (Layer-Reihenfolge: base < components < utilities < kein Layer)
   Amber-Hintergrund → Text-Farbe aus CSS-Variable

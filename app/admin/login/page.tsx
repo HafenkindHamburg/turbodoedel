@@ -42,9 +42,9 @@ export default function AdminLoginPage() {
           <Image
             src="/images/Turbodoedel_Logo_Dark.png"
             alt="Turbodoedel"
-            width={340}
-            height={94}
-            className="h-20 w-auto mx-auto mb-3"
+            width={442}
+            height={122}
+            className="h-[104px] w-auto mx-auto mb-3"
             priority
           />
           <p className="label text-text-faint">Admin-Bereich</p>

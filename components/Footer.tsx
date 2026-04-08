@@ -11,16 +11,16 @@ export default function Footer() {
             <Image
               src="/images/Turbodoedel_Logo_Dark.png"
               alt="Turbodoedel — Chiptuning & Performance"
-              width={300}
-              height={83}
-              className="logo-dark h-16 w-auto"
+              width={390}
+              height={108}
+              className="logo-dark h-[83px] w-auto"
             />
             <Image
               src="/images/Turbodoedel_Logo_Light.png"
               alt="Turbodoedel — Chiptuning & Performance"
-              width={300}
-              height={83}
-              className="logo-light h-16 w-auto"
+              width={390}
+              height={108}
+              className="logo-light h-[83px] w-auto"
             />
             <p className="text-text-faint text-xs mt-3">Wenn&apos;s um Leistung geht.</p>
           </div>

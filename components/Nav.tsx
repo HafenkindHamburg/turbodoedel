@@ -17,25 +17,25 @@ export default function Nav() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 bg-bg-base/95 backdrop-blur-sm border-b border-bg-border">
-      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <header className="nav-bg sticky top-0 z-50 border-b border-bg-border">
+      <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
         {/* Logo — Dark/Light Version */}
         <Link href="/" className="flex items-center">
           <Image
             src="/images/Turbodoedel_Logo_Dark.png"
             alt="Turbodoedel — Chiptuning & Performance"
-            width={220}
-            height={61}
+            width={286}
+            height={79}
             priority
-            className="logo-dark h-11 w-auto"
+            className="logo-dark h-[57px] w-auto"
           />
           <Image
             src="/images/Turbodoedel_Logo_Light.png"
             alt="Turbodoedel — Chiptuning & Performance"
-            width={220}
-            height={61}
+            width={286}
+            height={79}
             priority
-            className="logo-light h-11 w-auto"
+            className="logo-light h-[57px] w-auto"
           />
         </Link>
 

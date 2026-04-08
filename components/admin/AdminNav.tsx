@@ -27,16 +27,16 @@ export default function AdminNav() {
           <Image
             src="/images/Turbodoedel_Logo_Dark.png"
             alt="Turbodoedel"
-            width={180}
-            height={50}
-            className="logo-dark h-9 w-auto"
+            width={234}
+            height={65}
+            className="logo-dark h-[47px] w-auto"
           />
           <Image
             src="/images/Turbodoedel_Logo_Light.png"
             alt="Turbodoedel"
-            width={180}
-            height={50}
-            className="logo-light h-9 w-auto"
+            width={234}
+            height={65}
+            className="logo-light h-[47px] w-auto"
           />
           <span className="label text-amber">ADMIN</span>
           {links.map(({ href, label }) => (
